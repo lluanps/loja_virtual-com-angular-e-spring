@@ -31,7 +31,7 @@ public abstract class Pessoa implements Serializable{
 	private String telefone;
 	
 	@OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	List<Endereco> enderecos = new ArrayList<Endereco>();
+	List<ContaReceber> enderecos = new ArrayList<ContaReceber>();
 
 	public Long getId() {
 		return id;
@@ -65,11 +65,11 @@ public abstract class Pessoa implements Serializable{
 		this.telefone = telefone;
 	}
 	
-	public List<Endereco> getEnderecos() {
+	public List<ContaReceber> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
+	public void setEnderecos(List<ContaReceber> enderecos) {
 		this.enderecos = enderecos;
 	}
 
