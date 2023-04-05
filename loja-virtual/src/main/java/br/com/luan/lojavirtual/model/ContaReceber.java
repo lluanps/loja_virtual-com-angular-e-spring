@@ -50,7 +50,7 @@ public class ContaReceber implements Serializable{
 
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "pessoa_id", nullable = false,
-		foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa"))
+		foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
 	private Pessoa pessoa;
 	
 	public ContaReceber() {
@@ -58,7 +58,6 @@ public class ContaReceber implements Serializable{
 	
 	public ContaReceber(Long id, String descricao, StatusContaReceber status, Date dataVencimento, Date dataPagamento,
 			BigDecimal valorTotal, BigDecimal valorDesconto, Pessoa pessoa) {
-		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.status = status;
@@ -68,8 +67,6 @@ public class ContaReceber implements Serializable{
 		this.valorDesconto = valorDesconto;
 		this.pessoa = pessoa;
 	}
-
-
 
 	public Long getId() {
 		return id;
