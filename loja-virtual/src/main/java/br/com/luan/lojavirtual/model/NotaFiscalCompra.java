@@ -49,10 +49,6 @@ public class NotaFiscalCompra implements Serializable {
 	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "conta_pagar_fk"))
 	private ContaPagar contaPagar;
 	
-	/*@OneToMany(mappedBy = "notaFiscalCompra", orphanRemoval = true,
-			cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	List<NotaItemProduto> notaItemProdutos = new ArrayList<>();*/
-	
 	public NotaFiscalCompra() {
 	}
 

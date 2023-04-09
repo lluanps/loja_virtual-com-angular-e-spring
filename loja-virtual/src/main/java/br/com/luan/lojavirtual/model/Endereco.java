@@ -22,7 +22,7 @@ import br.com.luan.lojavirtual.enums.TipoEndereco;
 @Table(name = "endereco")
 @SequenceGenerator(name = "seq_endereco", sequenceName = "seq_endereco",
 allocationSize = 1, initialValue = 1)
-public class Endereco2 implements Serializable{
+public class Endereco implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -129,7 +129,7 @@ public class Endereco2 implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Endereco2 other = (Endereco2) obj;
+		Endereco other = (Endereco) obj;
 		return Objects.equals(id, other.id);
 	}
 	
