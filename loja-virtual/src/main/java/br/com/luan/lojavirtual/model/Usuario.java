@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -42,10 +43,14 @@ public class Usuario implements UserDetails, Serializable{
 	@Column(nullable = false)
 	private String senha;
 	
-	/*Carrega os acessos apenas quando necessário*/
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
-	@JoinTable(name = "usuario")
 	private Date dataAtualSenha;
+	
+	@ManyToOne(targetEntity = Pessoa.class)
+	@JoinColumn(name = "pessoa_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
+	private Pessoa pessoa;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "usuario_acesso",
@@ -59,6 +64,14 @@ public class Usuario implements UserDetails, Serializable{
 	inverseJoinColumns = @JoinColumn(name = "acesso_id", unique = false, referencedColumnName = "id",
 	table = "acesso", foreignKey = @ForeignKey(name = "acesso_fk", value = ConstraintMode.CONSTRAINT)))
 	private List<Acesso> acessos;
+	
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
 	
 	/*Autoridades = São acessos, do tipo ROLE_ADMIN, ROLE_SECREATARIO, ROLE_FINANCEIRO*/
 	@Override

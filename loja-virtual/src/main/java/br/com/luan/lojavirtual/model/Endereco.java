@@ -3,6 +3,7 @@ package br.com.luan.lojavirtual.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,12 +30,22 @@ public class Endereco implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_edereco")
 	private Long id;
 	
+	@Column(nullable = false)
 	private String ruaLogradouro;
+	
+	@Column(nullable = false)
 	private String cep;
+	
+	@Column(nullable = false)
 	private String numero;
-	private String complemento;
+		
+	@Column(nullable = false)
 	private String bairro;
+	
+	@Column(nullable = false)
 	private String uf;
+	
+	private String complemento;
 	
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "pessoa_id", nullable = false,
