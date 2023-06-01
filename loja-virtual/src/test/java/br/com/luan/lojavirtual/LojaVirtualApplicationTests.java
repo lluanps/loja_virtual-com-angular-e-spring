@@ -23,7 +23,7 @@ public class LojaVirtualApplicationTests {
 	
 	
 	@Test
-	public void testCadastraAcesso() {
+	public void testeCadastraAcesso() {
 		
 		Acesso acesso = new Acesso();
 		
