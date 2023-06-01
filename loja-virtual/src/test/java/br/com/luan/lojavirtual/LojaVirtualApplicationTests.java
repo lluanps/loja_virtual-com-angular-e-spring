@@ -23,7 +23,7 @@ public class LojaVirtualApplicationTests {
 		
 		acesso.setDescricao("ROLE_ADMIN");
 		
-		acessoService.salvarAcesso(acesso);
+		acessoService.save(acesso);
 		
 	}
 	
