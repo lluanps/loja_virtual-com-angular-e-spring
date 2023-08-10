@@ -18,7 +18,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter implements H
 	public void configure(WebSecurity webSecurity) {
 		/*Ignorando urls temporariamente*/
 		webSecurity.ignoring()
-		.antMatchers(HttpMethod.POST, "/salvar")
+		.antMatchers(HttpMethod.POST, "/salvarAcesso")
 		.antMatchers(HttpMethod.GET, "/buscar")
 		.antMatchers(HttpMethod.DELETE, "/delete");
 	}
