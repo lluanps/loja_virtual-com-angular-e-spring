@@ -69,7 +69,7 @@ public class VendaCompraLojaVirtual implements Serializable {
 	private BigDecimal valorFrete;
 	
 	@Column(nullable = false)
-	private Integer diasEntrega;
+	private Integer diaEntrega;
 	
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
@@ -161,12 +161,12 @@ public class VendaCompraLojaVirtual implements Serializable {
 		this.valorFrete = valorFrete;
 	}
 
-	public Integer getDiasEntrega() {
-		return diasEntrega;
+	public Integer getdiaEntrega() {
+		return diaEntrega;
 	}
 
-	public void setDiasEntrega(Integer diasEntrega) {
-		this.diasEntrega = diasEntrega;
+	public void setdiaEntrega(Integer diaEntrega) {
+		this.diaEntrega = diaEntrega;
 	}
 
 	public Date getDataVenda() {
