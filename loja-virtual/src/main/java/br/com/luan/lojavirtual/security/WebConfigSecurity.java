@@ -1,6 +1,5 @@
 package br.com.luan.lojavirtual.security;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSessionListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,38 +22,48 @@ import br.com.luan.lojavirtual.security.service.ImplUserDetailService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter implements HttpSessionListener {
-
+	
 	@Autowired
-	private ImplUserDetailService implUserDetailService; 
+	private ImplUserDetailService implementacaoUserDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*Ativa proteção do user q n ta validado por token*/
+		
 		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-			.disable().authorizeRequests().antMatchers("/").permitAll()//usado para accessar a parte incial/principal 
-			.antMatchers("/index").permitAll()
-			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()//evitar bloqueio de cors do navegador
-			.anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")//redireciona ou retorna o index ao deslogar
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))//mapeia o logout do sistema
-			//filtra as requisições
-			.and()
-				.addFilterAfter(new JWTLoginFilter("/login", authenticationManager()),
-					UsernamePasswordAuthenticationFilter.class)
-				.addFilterBefore(new JWTApiAutentificacaoFilter(), UsernamePasswordAuthenticationFilter.class);
+		.disable().authorizeRequests().antMatchers("/").permitAll()
+		.antMatchers("/index").permitAll()
+		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+		
+		/* redireciona ou da um retorno para index quando desloga*/
+		.anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")
+		
+		/*mapeia o logout do sistema*/
+		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		
+		/*Filtra as requisicoes para login de JWT*/
+		.and().addFilterAfter(new JWTLoginFilter("/login", authenticationManager()),
+				UsernamePasswordAuthenticationFilter.class)
+		
+		.addFilterBefore(new JWTApiAutentificacaoFilter(), UsernamePasswordAuthenticationFilter.class);
+		
 	}
 	
+	
+	/*Irá consultar o user no banco com Spring Security*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(implUserDetailService).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(implementacaoUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+		
 	}
 	
+	
+
+	/*Ignora alguas URL livre de autenticação*/
 	@Override
-	public void configure(WebSecurity webSecurity) {
-		/*Ignorando urls temporariamente*/
-		//webSecurity.ignoring()
-		//.antMatchers(HttpMethod.POST, "/salvarAcesso")
-		//.antMatchers(HttpMethod.GET, "/buscar")
-		//.antMatchers(HttpMethod.DELETE, "/delete");
+	public void configure(WebSecurity web) throws Exception {
+		//web.ignoring().antMatchers(HttpMethod.GET, "/salvarAcesso", "/deleteAcesso")
+		//.antMatchers(HttpMethod.POST, "/salvarAcesso", "/deleteAcesso");
+		/*Ingnorando URL no momento para nao autenticar*/
 	}
-	
+
 }

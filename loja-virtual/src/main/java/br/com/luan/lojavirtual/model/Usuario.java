@@ -52,17 +52,17 @@ public class Usuario implements UserDetails, Serializable{
 	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
 	private Pessoa pessoa;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuario_acesso",
-	uniqueConstraints = @UniqueConstraint (columnNames = {"usuario_id", "acesso_id"},
-	name = "unico _acesso_user"),
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "usuarios_acesso", 
+		uniqueConstraints = @UniqueConstraint (columnNames = {"usuario_id", "acesso_id"} ,
+		name = "unique_acesso_user"),
 	
-	joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id",
-	table = "usuario", unique = false, foreignKey = @ForeignKey(name = "usuario_fk",
-	value = ConstraintMode.CONSTRAINT)), 
-	
-	inverseJoinColumns = @JoinColumn(name = "acesso_id", unique = false, referencedColumnName = "id",
-	table = "acesso", foreignKey = @ForeignKey(name = "acesso_fk", value = ConstraintMode.CONSTRAINT)))
+	   joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id", table = "usuario", 
+	   unique = false, foreignKey = @ForeignKey(name = "usuario_fk", value = ConstraintMode.CONSTRAINT)), 
+	   
+	inverseJoinColumns = @JoinColumn(name = "acesso_id", 
+						unique = false, referencedColumnName = "id", table = "acesso",
+						foreignKey = @ForeignKey(name = "aesso_fk", value = ConstraintMode.CONSTRAINT)))
 	private List<Acesso> acessos;
 	
 	public void setPessoa(Pessoa pessoa) {

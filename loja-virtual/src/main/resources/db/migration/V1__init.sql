@@ -1,11 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 9.5.2
--- Dumped by pg_dump version 9.5.2
-
--- Started on 2021-12-28 09:16:33
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -14,18 +6,9 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- TOC entry 2344 (class 1262 OID 17479)
--- Name: loja_virtual; Type: DATABASE; Schema: -; Owner: postgres
---
-
--- CREATE DATABASE loja_virtual WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Portuguese_Brazil.1252' LC_CTYPE = 'Portuguese_Brazil.1252';
-
 
 ALTER DATABASE loja_virtual OWNER TO postgres;
 
---\connect loja_virtual
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -35,29 +18,17 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 1 (class 3079 OID 12355)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
+
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
---
--- TOC entry 2347 (class 0 OID 0)
--- Dependencies: 1
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 SET search_path = public, pg_catalog;
 
---
--- TOC entry 233 (class 1255 OID 17742)
--- Name: validachavepessoa(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION validachavepessoa() RETURNS trigger
     LANGUAGE plpgsql
@@ -80,10 +51,6 @@ CREATE FUNCTION validachavepessoa() RETURNS trigger
 
 ALTER FUNCTION public.validachavepessoa() OWNER TO postgres;
 
---
--- TOC entry 234 (class 1255 OID 17760)
--- Name: validachavepessoa2(); Type: FUNCTION; Schema: public; Owner: postgres
---
 
 CREATE FUNCTION validachavepessoa2() RETURNS trigger
     LANGUAGE plpgsql
@@ -110,23 +77,13 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
---
--- TOC entry 181 (class 1259 OID 17480)
--- Name: acesso; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE acesso (
     id bigint NOT NULL,
     descricao character varying(255) NOT NULL
 );
 
-
 ALTER TABLE acesso OWNER TO postgres;
-
---
--- TOC entry 182 (class 1259 OID 17485)
--- Name: avaliacao_produto; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE avaliacao_produto (
     id bigint NOT NULL,
@@ -136,13 +93,7 @@ CREATE TABLE avaliacao_produto (
     produto_id bigint NOT NULL
 );
 
-
 ALTER TABLE avaliacao_produto OWNER TO postgres;
-
---
--- TOC entry 183 (class 1259 OID 17490)
--- Name: categoria_produto; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE categoria_produto (
     id bigint NOT NULL,
@@ -151,11 +102,6 @@ CREATE TABLE categoria_produto (
 
 
 ALTER TABLE categoria_produto OWNER TO postgres;
-
---
--- TOC entry 184 (class 1259 OID 17495)
--- Name: conta_pagar; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE conta_pagar (
     id bigint NOT NULL,
@@ -172,11 +118,6 @@ CREATE TABLE conta_pagar (
 
 ALTER TABLE conta_pagar OWNER TO postgres;
 
---
--- TOC entry 185 (class 1259 OID 17503)
--- Name: conta_receber; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE conta_receber (
     id bigint NOT NULL,
     descricao character varying(255) NOT NULL,
@@ -191,11 +132,6 @@ CREATE TABLE conta_receber (
 
 ALTER TABLE conta_receber OWNER TO postgres;
 
---
--- TOC entry 186 (class 1259 OID 17511)
--- Name: cup_desc; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE cup_desc (
     id bigint NOT NULL,
     cod_desc character varying(255) NOT NULL,
@@ -206,11 +142,6 @@ CREATE TABLE cup_desc (
 
 
 ALTER TABLE cup_desc OWNER TO postgres;
-
---
--- TOC entry 187 (class 1259 OID 17516)
--- Name: endereco; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE endereco (
     id bigint NOT NULL,
@@ -228,11 +159,6 @@ CREATE TABLE endereco (
 
 ALTER TABLE endereco OWNER TO postgres;
 
---
--- TOC entry 188 (class 1259 OID 17524)
--- Name: forma_pagamento; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE forma_pagamento (
     id bigint NOT NULL,
     descricao character varying(255) NOT NULL
@@ -240,11 +166,6 @@ CREATE TABLE forma_pagamento (
 
 
 ALTER TABLE forma_pagamento OWNER TO postgres;
-
---
--- TOC entry 189 (class 1259 OID 17529)
--- Name: imagem_produto; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE imagem_produto (
     id bigint NOT NULL,
@@ -256,11 +177,6 @@ CREATE TABLE imagem_produto (
 
 ALTER TABLE imagem_produto OWNER TO postgres;
 
---
--- TOC entry 190 (class 1259 OID 17537)
--- Name: item_venda_loja; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE item_venda_loja (
     id bigint NOT NULL,
     quantidade double precision NOT NULL,
@@ -268,26 +184,14 @@ CREATE TABLE item_venda_loja (
     venda_compra_loja_virtu_id bigint NOT NULL
 );
 
-
 ALTER TABLE item_venda_loja OWNER TO postgres;
-
---
--- TOC entry 191 (class 1259 OID 17542)
--- Name: marca_produto; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE marca_produto (
     id bigint NOT NULL,
     nome_desc character varying(255) NOT NULL
 );
 
-
 ALTER TABLE marca_produto OWNER TO postgres;
-
---
--- TOC entry 192 (class 1259 OID 17547)
--- Name: nota_fiscal_compra; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE nota_fiscal_compra (
     id bigint NOT NULL,
@@ -302,13 +206,7 @@ CREATE TABLE nota_fiscal_compra (
     pessoa_id bigint NOT NULL
 );
 
-
 ALTER TABLE nota_fiscal_compra OWNER TO postgres;
-
---
--- TOC entry 193 (class 1259 OID 17555)
--- Name: nota_fiscal_venda; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE nota_fiscal_venda (
     id bigint NOT NULL,
@@ -320,13 +218,7 @@ CREATE TABLE nota_fiscal_venda (
     venda_compra_loja_virt_id bigint NOT NULL
 );
 
-
 ALTER TABLE nota_fiscal_venda OWNER TO postgres;
-
---
--- TOC entry 194 (class 1259 OID 17563)
--- Name: nota_item_produto; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE nota_item_produto (
     id bigint NOT NULL,
@@ -335,13 +227,7 @@ CREATE TABLE nota_item_produto (
     produto_id bigint NOT NULL
 );
 
-
 ALTER TABLE nota_item_produto OWNER TO postgres;
-
---
--- TOC entry 195 (class 1259 OID 17568)
--- Name: pessoa_fisica; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE pessoa_fisica (
     id bigint NOT NULL,
@@ -354,11 +240,6 @@ CREATE TABLE pessoa_fisica (
 
 
 ALTER TABLE pessoa_fisica OWNER TO postgres;
-
---
--- TOC entry 196 (class 1259 OID 17576)
--- Name: pessoa_juridica; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE pessoa_juridica (
     id bigint NOT NULL,
@@ -375,11 +256,6 @@ CREATE TABLE pessoa_juridica (
 
 
 ALTER TABLE pessoa_juridica OWNER TO postgres;
-
---
--- TOC entry 197 (class 1259 OID 17584)
--- Name: produto; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE produto (
     id bigint NOT NULL,
@@ -402,11 +278,6 @@ CREATE TABLE produto (
 
 ALTER TABLE produto OWNER TO postgres;
 
---
--- TOC entry 202 (class 1259 OID 17620)
--- Name: seq_acesso; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
 CREATE SEQUENCE seq_acesso
     START WITH 1
     INCREMENT BY 1
@@ -416,11 +287,6 @@ CREATE SEQUENCE seq_acesso
 
 
 ALTER TABLE seq_acesso OWNER TO postgres;
-
---
--- TOC entry 203 (class 1259 OID 17622)
--- Name: seq_avaliacao_produto; Type: SEQUENCE; Schema: public; Owner: postgres
---
 
 CREATE SEQUENCE seq_avaliacao_produto
     START WITH 1
